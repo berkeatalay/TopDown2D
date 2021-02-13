@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float moveLimiter = 0.7f;
+    [SerializeField] UIInventory uIInventory;
 
     Rigidbody2D rb2d = null;
     Animator animator = null;
@@ -17,6 +18,14 @@ public class PlayerController : MonoBehaviour
     Vector2 nextPosition;
     public FloatingJoystick floatingJoystick;
     int layerMask;
+    Inventory inventory;
+
+
+    private void Awake()
+    {
+        inventory = new Inventory();
+        uIInventory.SetInventory(inventory);
+    }
 
     private void Start()
     {
@@ -29,8 +38,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         HandleMovement();
-
-
     }
 
     private void HandleInteraction()
